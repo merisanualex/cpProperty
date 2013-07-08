@@ -46,7 +46,7 @@ public:
 
     operator T&() const
     {
-        return this->get();
+        return this->obj;
     }    
 
 };
@@ -72,7 +72,7 @@ public:
 
     operator T() const
     {
-        return this->get();
+        return this->obj;
     }    
 
 };
