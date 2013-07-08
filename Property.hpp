@@ -84,7 +84,7 @@ class Property<T, true, false> : public T
 public:
     using T::T;
 
-    Property(const T& value) : T(value)
+    Property(const T& value)
     {}   
 };
 
