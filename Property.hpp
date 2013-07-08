@@ -44,16 +44,6 @@ public:
         return this->obj;
     }
 
-    T& get() const
-    {
-        return this->obj;
-    }
-
-    void set(const T& value)
-    {
-        this->obj = value;
-    }
-
     operator T&() const
     {
         return this->get();
@@ -80,11 +70,6 @@ public:
         return this->obj;
     }
 
-    T get() const
-    {
-        return this->obj;
-    }
-
     operator T() const
     {
         return this->get();
@@ -92,6 +77,7 @@ public:
 
 };
 
+// Read/Write non-pod specialization
 template <typename T>
 class Property<T, true, false> : public T
 {
@@ -100,13 +86,9 @@ public:
 
     Property(const T& value) : T(value)
     {}   
-
-    T* operator->()
-    {
-        return this;
-    } 
 };
 
+// Read only non-pod specialization
 template <typename T>
 class Property<T, false, false> : public T
 {
