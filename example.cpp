@@ -23,7 +23,6 @@ int main()
     using std::cout;
 
     Test test;
-
     cout<< "Initial values:\n";
     cout<< "var        = "<< test.var       <<"\n";
     cout<< "anothervar = "<< test.anothervar<<"\n";

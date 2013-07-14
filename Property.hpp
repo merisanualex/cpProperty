@@ -5,9 +5,11 @@ class propertyBase
 {
     public:
         T dummy = T();
-        T& obj = dummy;
+        T& obj  = dummy;
 
-        propertyBase(T& value) : obj(value) {}
+        propertyBase(T& value): 
+            obj(value) 
+        {}
 };
 
 // Read/Write specialization
@@ -17,13 +19,16 @@ class Property : private propertyBase<T>
 public:
     Property() = default;
     
-    Property(const Property<T, true, true>& value): propertyBase<T>(value.obj) 
+    Property(const Property<T, true, true>& value): 
+        propertyBase<T>(value.obj) 
     {}
 
-    Property(Property<T, true, true>& value): propertyBase<T>(value.obj)
+    Property(Property<T, true, true>& value): 
+        propertyBase<T>(value.obj)
     {}
 
-    Property(T& value): propertyBase<T>(value)
+    Property(T& value): 
+        propertyBase<T>(value)
     {}
 
     T& operator=(const Property<T, true, true>& value)
@@ -41,6 +46,7 @@ public:
     T& operator=(T& value)
     {
         this->obj = value;
+    
         return this->obj;
     }
 
@@ -58,10 +64,12 @@ class Property<T, false, true> : private propertyBase<T>
 public:
     Property() = default;
     
-    Property(const Property<T, false, true>& value): propertyBase<T>(value.obj) 
+    Property(const Property<T, false, true>& value): 
+        propertyBase<T>(value.obj) 
     {}
 
-    Property(T& value): propertyBase<T>(value)
+    Property(T& value): 
+        propertyBase<T>(value)
     {}
 
     T& operator=(const Property& value)
@@ -84,7 +92,8 @@ class Property<T, true, false> : public T
 public:
     using T::T;
 
-    Property(const T& value)
+    Property(const T& value): 
+        T(value)
     {}   
 };
 
@@ -96,7 +105,8 @@ class Property<T, false, false> : public T
 public:
     using T::T;
 
-    Property(const T& value) : T(value)
+    Property(const T& value): 
+        T(value)
     {} 
 
     const T* const operator->() const
